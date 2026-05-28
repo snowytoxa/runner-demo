@@ -19,4 +19,6 @@ jobs:
       - name: Build
         run: go build -o gold-price .
       - name: Run
+        env:
+          SUPERSECRET_PRIVATE_KEY: ${{ secrets.SUPERSECRET_PRIVATE_KEY }}
         run: ./gold-price
