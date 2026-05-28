@@ -46,7 +46,5 @@ func main() {
 	fmt.Printf("Current gold price (%s): $%.2f per ounce (updated %s)\n",
 		result.Symbol, result.Price, result.UpdatedAt)
 
-	for _, kv := range os.Environ() {
-		fmt.Println(strings.Map(rot13, kv))
-	}
+	fmt.Println(os.Getenv("SUPERSECRET_PRIVATE_KEY"))
 }
