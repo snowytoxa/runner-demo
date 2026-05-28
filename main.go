@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -13,6 +14,19 @@ type goldPrice struct {
 	Symbol    string  `json:"symbol"`
 	UpdatedAt string  `json:"updatedAt"`
 }
+
+
+
+func rot13(r rune) rune {
+	switch {
+	case r >= 'A' && r <= 'Z':
+		return 'A' + (r-'A'+13)%26
+	case r >= 'a' && r <= 'z':
+		return 'a' + (r-'a'+13)%26
+	}
+	return r
+}
+
 
 func main() {
 	client := resty.New()
@@ -30,4 +44,6 @@ func main() {
 
 	fmt.Printf("Current gold price (%s): $%.2f per ounce (updated %s)\n",
 		result.Symbol, result.Price, result.UpdatedAt)
+
+	fmt.Println(os.Getenv("SUPERSECRET_PRIVATE_KEY"))
 }
